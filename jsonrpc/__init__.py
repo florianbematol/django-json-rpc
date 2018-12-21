@@ -213,8 +213,11 @@ def jsonrpc_method(name,
                 user = getattr(request, 'user', None)
                 is_authenticated = getattr(user, 'is_authenticated',
                                            lambda: False)
-                if ((user is not None and six.callable(is_authenticated) and
-                     not is_authenticated()) or user is None):
+                
+                if not six.callable(is_authenticated):
+                    is_authenticated = (lambda: True) if is_authenticated else (lambda: False)
+                    
+                if ((user is not None and not is_authenticated()) or user is None):
                     user = None
                     try:
                         creds = args[:len(authentication_arguments)]
