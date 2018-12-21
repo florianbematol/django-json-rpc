@@ -5,6 +5,9 @@ Django JSON-RPC
 
 A basic JSON-RPC Implementation for your Django-powered sites.
 
+This is a fork, to fix is_authenticated test in jsonrpc/init.py(_func). Which one is not anymore a method since Django 2.0.
+
+
 Features:
 
 * Simple, pythonic API</li>
